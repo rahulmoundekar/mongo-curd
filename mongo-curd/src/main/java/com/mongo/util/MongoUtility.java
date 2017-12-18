@@ -4,6 +4,9 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 import org.bson.Document;
+
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoCredential;
 
@@ -26,6 +29,21 @@ public class MongoUtility {
 		System.out.println("Collection sampleCollection selected successfully");
 
 		return collection;
+	}
+
+	public static DB getMongoDatabase() {
+
+		// Creating a Mongo client
+		MongoClient mongo = new MongoClient("localhost", 27017);
+
+		// Creating Credentials
+		MongoCredential credential = MongoCredential.createCredential("localhost", "curd", "password".toCharArray());
+		System.out.println("Connected to the database successfully");
+
+		// Accessing the database
+		DB database = mongo.getDB("curd");
+
+		return database;
 	}
 
 }
